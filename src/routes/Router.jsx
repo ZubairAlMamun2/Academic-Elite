@@ -9,6 +9,7 @@ import Login from "../components/Login";
 import Register from "../components/Register";
 import CreateAssignments from "../components/CreateAssignments";
 import MyAemptedAssignments from "../components/MyAemptedAssignments";
+import ErrorPage from "../components/Error";
 
   const router = createBrowserRouter([
     {
@@ -18,6 +19,7 @@ import MyAemptedAssignments from "../components/MyAemptedAssignments";
     {
       path: "/assignments",
       element:<Assignments />,
+      loader:()=>fetch(`http://localhost:5000/allassignments`)
     },
     {
       path: "/pendingassignments",
@@ -45,6 +47,10 @@ import MyAemptedAssignments from "../components/MyAemptedAssignments";
           },
          
         ]
+      },
+      {
+        path: "*",
+        element: <ErrorPage />,
       },
   ]);
 

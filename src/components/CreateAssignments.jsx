@@ -54,7 +54,7 @@ const CreateAssignment = () => {
             icon: 'success',
             confirmButtonText: 'Cool'
           })
-          navigate('/');
+          navigate('/assignments');
         }
       });
 
