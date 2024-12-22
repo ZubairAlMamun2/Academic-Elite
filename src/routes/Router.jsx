@@ -10,6 +10,7 @@ import Register from "../components/Register";
 import CreateAssignments from "../components/CreateAssignments";
 import MyAemptedAssignments from "../components/MyAemptedAssignments";
 import ErrorPage from "../components/Error";
+import PrivetRoute from "./PrivetRoute";
 
   const router = createBrowserRouter([
     {
@@ -23,15 +24,15 @@ import ErrorPage from "../components/Error";
     },
     {
       path: "/pendingassignments",
-      element:<PendingAssign />,
+      element:<PrivetRoute><PendingAssign /></PrivetRoute>,
     },
     {
       path: "/createassignments",
-      element:<CreateAssignments />,
+      element:<PrivetRoute><CreateAssignments /></PrivetRoute>,
     },
     {
       path: "/myaemptedassignments",
-      element:<MyAemptedAssignments />,
+      element:<PrivetRoute><MyAemptedAssignments /></PrivetRoute>,
     },
     {
         path: "/auth",
