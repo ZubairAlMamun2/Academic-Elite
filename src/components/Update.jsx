@@ -1,68 +1,71 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useRef, useState } from "react";
 import NavBar from "./Navbar";
 import Footer from "./Footer";
+import { Link, useLoaderData, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
-import { AuthContext } from "../provider/AuthProvider";
-import { useNavigate } from "react-router-dom";
 import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
+import { AuthContext } from "../provider/AuthProvider";
 
-const CreateAssignment = () => {
-  const { user } = useContext(AuthContext);
-  console.log(user);
-  const navigate=useNavigate()
-  const [startDate, setStartDate] = useState(new Date());
 
-  const handleSubmit = (e) => {
+const Update = () => {
+  const user=useContext(AuthContext)
+  const data = useLoaderData();
+  console.log(data);
+  const navigate = useNavigate();
+
+
+  console.log(data.title)
+//   const [title, setTitle] = useState(data.title);
+
+  const handleupdate = (e) => {
+    // if(user.email!==data.email){
+    //     Swal.fire({
+    //         title: 'Error!',
+    //         text: "Sorry, You Can't Update it, Cause This is not created by you!",
+    //         icon: 'error',
+    //         confirmButtonText: 'OK'
+    //       })
+        
+    //     navigate("/assignments");
+    //     return;
+    // }
     e.preventDefault();
-
     const form = new FormData(e.target);
     const title = form.get("title");
     const photo = form.get("photo");
     const type = form.get("type");
     const marks = form.get("marks");
     const description = form.get("description");
-    const date = startDate;
-    const email = user.email;
-    const name = user.displayName;
-    // const donatedby='';
-    console.log(startDate)
-    // console.log(typeof(amount))
 
     const formData = {
-      title,
-      photo,
-      type,
-      email,
-      name,
-      marks,
-      description,
-      date
-    };
+        title,
+        photo,
+        type,
+        marks,
+        description
+      };
 
-    fetch(`http://localhost:5000/addnewassignment`, {
-      method: "POST",
+    console.log(formData);
+    fetch(`http://localhost:5000/update/${data._id}`, {
+      method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(formData),
     })
       .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        if(data.acknowledged){
-          Swal.fire({
-            title: 'Success!',
-            text: 'Assignment added succesfully',
-            icon: 'success',
-            confirmButtonText: 'Cool'
-          })
-          navigate('/assignments');
+      .then((res) => {
+        console.log(res);
+        if (res.modifiedCount > 0) {
+            Swal.fire({
+                title: 'Success!',
+                text: 'Assignment Updated succesfully',
+                icon: 'success',
+                confirmButtonText: 'Cool'
+              })
+              navigate(location?.state ? location.state : "/assignments");
         }
       });
-
-    console.log(formData);
-    // e.target.reset();
   };
   return (
     <div className="w-11/12 mx-auto">
@@ -71,9 +74,9 @@ const CreateAssignment = () => {
       <div className="min-h-screen flex justify-center items-center">
         <div className="card rounded-none bg-base-100 w-full max-w-lg shrink-0 p-10">
           <h2 className="text-2xl font-semibold text-center">
-            Add New Assignment Page
+            Update Assignment Page
           </h2>
-          <form onSubmit={handleSubmit} className="card-body p-0">
+          <form onSubmit={handleupdate} className="card-body p-0">
             <div className="form-control">
               <label className="label">
                 <span className="label-text text-sm font-semibold">
@@ -81,6 +84,8 @@ const CreateAssignment = () => {
                 </span>
               </label>
               <input
+                // value={title}
+                // onChange={(title2) => setTitle(title2)}
                 name="title"
                 type="text"
                 placeholder="Assignment title"
@@ -152,7 +157,7 @@ const CreateAssignment = () => {
             <div className="form-control">
               <label className="label">
                 <span className="label-text text-sm font-semibold">
-                  Starting Date: <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} />
+                  Created On: <DatePicker selected={data.date}  />
                 </span>
               </label>
               
@@ -162,9 +167,15 @@ const CreateAssignment = () => {
             
 
             <div className="form-control mt-6">
-              <button className="btn btn-neutral rounded-none">Add</button>
+              <button className="btn btn-neutral rounded-none">Update</button>
             </div>
           </form>
+
+          <div className=" mt-6">
+          <Link className="btn btn-primary flex justify-center rounded-none" to={`/assignments`}>Go Back</Link>
+            </div>
+
+          
 
           <div className="pt-2"></div>
         </div>
@@ -175,4 +186,4 @@ const CreateAssignment = () => {
   );
 };
 
-export default CreateAssignment;
+export default Update;

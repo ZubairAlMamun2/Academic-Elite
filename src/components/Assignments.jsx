@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react'
 import Footer from './Footer'
 import NavBar from './Navbar'
-import { useLoaderData } from 'react-router-dom'
+import { Link, useLoaderData } from 'react-router-dom'
 import Swal from 'sweetalert2'
 import { AuthContext } from '../provider/AuthProvider'
 
@@ -61,7 +61,7 @@ const Assignments = () => {
           {data&&data.map(items=>{
             return <div key={items._id} className="card  bg-base-100 col-span-6 md:col-span-3 lg:col-span-2 shadow-xl">
             <figure>
-              <img className='p-3 border-none rounded-lg'
+              <img className='p-3 h-48 border-none rounded-lg'
                 src={items.
                   photo
                   }
@@ -76,7 +76,8 @@ const Assignments = () => {
                 <button className="btn btn-primary" onClick={() => {
                     handledelete(items._id,items.email);
                   }}>Delete</button>
-                <button className="btn btn-primary">Update</button>
+                <Link to={`/update/${items._id}`} className="btn btn-primary">Update</Link>
+
                 <button className="btn btn-primary">View Assignment</button>
               </div>
             </div>

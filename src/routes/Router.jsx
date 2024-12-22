@@ -11,6 +11,7 @@ import CreateAssignments from "../components/CreateAssignments";
 import MyAemptedAssignments from "../components/MyAemptedAssignments";
 import ErrorPage from "../components/Error";
 import PrivetRoute from "./PrivetRoute";
+import Update from "../components/Update";
 
   const router = createBrowserRouter([
     {
@@ -21,6 +22,11 @@ import PrivetRoute from "./PrivetRoute";
       path: "/assignments",
       element:<Assignments />,
       loader:()=>fetch(`http://localhost:5000/allassignments`)
+    },
+    {
+      path: "/update/:id",
+      element:<PrivetRoute><Update /></PrivetRoute> ,
+      loader:({params})=>fetch(`http://localhost:5000/assignment/${params.id}`)
     },
     {
       path: "/pendingassignments",
