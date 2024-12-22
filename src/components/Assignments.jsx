@@ -78,7 +78,7 @@ const Assignments = () => {
                   }}>Delete</button>
                 <Link to={`/update/${items._id}`} className="btn btn-primary">Update</Link>
 
-                <button className="btn btn-primary">View Assignment</button>
+                <Link to={`/details/${items._id}`} className="btn btn-primary">View Assignment</Link>
               </div>
             </div>
           </div>
