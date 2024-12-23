@@ -1,13 +1,16 @@
 import React from 'react'
 import NavBar from './Navbar'
 import Footer from './Footer'
-import { Link, useLoaderData, useParams } from 'react-router-dom'
+import { Link, useLoaderData, useNavigate, useParams } from 'react-router-dom'
+import UseAxiosSecure from './UseAxiosSecure'
+import Swal from 'sweetalert2'
 
 const Givemark = () => {
    
     const data=useLoaderData()
-    console.log(data)
-
+    console.log(data._id)
+    const axiossecure=UseAxiosSecure()
+    const navigate=useNavigate();
 
     const handleupdate = (e) => {
         
@@ -23,20 +26,20 @@ const Givemark = () => {
             status,
           };
     
-        console.log(formData);
-        // axiossecure.put(`http://localhost:5000//${id}`,formData,{withCredentials:true})
-        //   .then((res) => {
-        //     console.log(res.data);
-        //     if (res.data.modifiedCount > 0) {
-        //         Swal.fire({
-        //             title: 'Success!',
-        //             text: 'Assignment marked succesfully',
-        //             icon: 'success',
-        //             confirmButtonText: 'Cool'
-        //           })
-        //           navigate("/pendingassignments");
-        //     }
-        //   });
+        console.log(formData,data._id);
+        axiossecure.put(`http://localhost:5000/givemark/${data._id}`,formData)
+          .then((res) => {
+            console.log(res.data);
+            if (res.data.modifiedCount > 0) {
+                Swal.fire({
+                    title: 'Success!',
+                    text: 'Assignment marked succesfully',
+                    icon: 'success',
+                    confirmButtonText: 'Cool'
+                  })
+                  navigate("/pendingassignments");
+            }
+          });
       };
 
 
@@ -50,7 +53,10 @@ const Givemark = () => {
           </h2>
           <form onSubmit={handleupdate} className="card-body p-0">
 
-            <div className='mt-5 ' >
+            <div className='mt-5 font-semibold text-center' >
+                {data.title}
+            </div>
+            <div  >
                 <p className='font-semibold'>Google Doc link:</p> <a target='blank' href={data.link}>{data.link}</a>
             </div>
             <div className=''>
@@ -67,7 +73,7 @@ const Givemark = () => {
               <input
                 name="obtainedmarks"
                 type="number"
-                placeholder="marks"
+                placeholder="input marks"
                 className="input input-bordered"
                 required
                 max={data.marks}
@@ -83,7 +89,7 @@ const Givemark = () => {
                 name="feedback"
                 required
                 className="textarea textarea-bordered"
-                placeholder="feedback"
+                placeholder="give some feedback"
               ></textarea>
             </div>
 

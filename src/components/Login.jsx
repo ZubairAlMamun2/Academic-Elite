@@ -67,7 +67,8 @@ const Login = () => {
         // console.log(res.user);
         setUser(res.user);
         setError("");
-        navigate("/");
+        // navigate("/");
+        navigate(location?.state?location.state:"/")
         Swal.fire({
           title: 'Success!',
           text: 'User Loged in succesfully',
