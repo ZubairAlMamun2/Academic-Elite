@@ -4,12 +4,14 @@ import Footer from './Footer'
 import axios from 'axios'
 import { AuthContext } from '../provider/AuthProvider'
 import UseAxiosSecure from './UseAxiosSecure'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import Swal from 'sweetalert2'
 
 
 const PendingAssign = () => {
   const {user}=useContext(AuthContext)
   const axiossecure=UseAxiosSecure()
+  const navigate=useNavigate()
   const [assignment,setAssignment]=useState([]);
   useEffect(()=>{
     axiossecure.get(`http://localhost:5000/pendingassignment`)
@@ -52,7 +54,20 @@ const PendingAssign = () => {
                                     </td>
                                 <td className='border'>{item?.name}</td>
                                 <th className='border'>
-                                    <Link to={`/givemark/${item._id}`} className="btn btn-primary btn-xs">Give Marks</Link>
+                                    {/* <Link to={`/givemark/${item._id}`} className="btn btn-primary btn-xs">Give Marks</Link> */}
+                                    <button onClick={()=>{
+                                      if(user.email==item.email){
+                                        Swal.fire({
+                                                title: 'Error!',
+                                                text: "You Can't Marked it, Cause This is created by you!",
+                                                icon: 'error',
+                                                confirmButtonText: 'OK'
+                                              })
+                                      }
+                                      else{
+                                        navigate(`/givemark/${item._id}`)
+                                      }
+                                    }} className="btn btn-primary btn-xs">Give Marks</button>
                                 </th>
                             </tr>)
                         }

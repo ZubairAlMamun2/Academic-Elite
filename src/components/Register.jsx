@@ -42,7 +42,8 @@ const Register = () => {
         
         UpdateUserProfile({displayName:name,photoURL:photo}).
         then((res)=>{
-            navigate(location?.state?location.state:"/")
+            navigate("/")
+            // navigate(location?.state?location.state:"/")
         })
       })
       .catch((error) => {
@@ -62,7 +63,8 @@ const Register = () => {
         // console.log(res.user);
         setUser(res.user);
         setError("");
-        navigate(location?.state ? location.state : "/");
+        // navigate(location?.state ? location.state : "/");
+        navigate("/");
         Swal.fire({
           title: 'Success!',
           text: 'User Registred succesfully',

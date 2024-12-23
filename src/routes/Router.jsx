@@ -55,6 +55,7 @@ import Givemark from "../components/Givemark";
     {
       path: "/givemark/:id",
       element:<PrivetRoute><Givemark /></PrivetRoute>,
+      loader:({params})=>fetch(`http://localhost:5000/pendingassignment/${params.id}`,{credentials: 'include'})
     },
     {
         path: "/auth",
