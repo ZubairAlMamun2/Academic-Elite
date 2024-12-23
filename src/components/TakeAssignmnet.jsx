@@ -4,10 +4,12 @@ import NavBar from './Navbar';
 import Footer from './Footer';
 import { AuthContext } from '../provider/AuthProvider';
 import Swal from 'sweetalert2';
+import UseAxiosSecure from './UseAxiosSecure';
 
 const TakeAssignmnet = () => {
     const {user}=useContext(AuthContext)
     const data =useLoaderData();
+    const axiossecure=UseAxiosSecure()
     const navigate =useNavigate();
     // console.log(data)
     const handleSubmit=(e)=>{
@@ -23,6 +25,7 @@ const TakeAssignmnet = () => {
     const status="pending";
     const feedback="";
     const date=data.date;
+    const assignment_id=data._id
 
     const formData = {
         title,
@@ -33,20 +36,15 @@ const TakeAssignmnet = () => {
         obtainedmarks,
         status,
         feedback,
-        date
+        date,
+        assignment_id
       };
 
-          fetch(`http://localhost:5000/takeassignment`, {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(formData),
-          })
-            .then((res) => res.json())
-            .then((data) => {
-              console.log(data);
-              if(data.acknowledged){
+      axiossecure.post(`http://localhost:5000/takeassignment`,formData,{withCredentials:true}  )
+            
+            .then((res) => {
+              console.log(res.data);
+              if(res.data.acknowledged){
                 Swal.fire({
                   title: 'Success!',
                   text: 'Assignment submited succesfully',

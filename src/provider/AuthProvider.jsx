@@ -12,14 +12,14 @@ import {
   sendPasswordResetEmail,
 } from "firebase/auth";
 import app from "../firebase/firebase.config";
+import axios from "axios";
 
-export const AuthContext = createContext();
+export const AuthContext = createContext(null);
 const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-  const[resetEmail,SetresetEmail]=useState("");
   const [loading, setLoading] = useState(true);
 
 
@@ -52,12 +52,26 @@ const AuthProvider = ({ children }) => {
 
   
 
-  const UserInfo = { user, setUser, createNewUser, Logout, Login, loading,SetresetEmail,resetEmail,UpdateUserProfile,SignInWithGoogle,ResetUserPassword };
+  const UserInfo = { user, setUser, createNewUser, Logout, Login, loading,UpdateUserProfile,SignInWithGoogle,ResetUserPassword };
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentuser) => {
       setUser(currentuser);
-      setLoading(false);
+      if(currentuser?.email){
+        const user={email:currentuser.email}
+            axios.post('http://localhost:5000/jwt',user,{withCredentials:true})
+            .then((res)=>{
+                console.log(res.data)
+                setLoading(false);
+            })
+        }
+        else{
+            axios.post('http://localhost:5000/logout',{},{withCredentials:true})
+            .then((res)=>{
+                console.log('logout',res.data)
+                setLoading(false);
+            }) 
+        }
     });
     return () => {
       unsubscribe();

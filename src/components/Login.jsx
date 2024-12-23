@@ -17,7 +17,7 @@ const Login = () => {
   const [error, setError] = useState("");
   const [passtype, setPasstype] = useState(false);
   const auth = getAuth(app);
-  const { Login, setUser,resetEmail,SetresetEmail } = useContext(AuthContext);
+  const { Login, setUser,resetEmail } = useContext(AuthContext);
   const location = useLocation();
   const navigate = useNavigate();
   //   console.log(location)
@@ -26,7 +26,7 @@ const Login = () => {
   const handleChange=(e)=>{
     e.preventDefault()
         const email=e.target.value
-        SetresetEmail(email)
+        // ResetUserPassword(email)
         // console.log(resetEmail)
   }
 
@@ -119,7 +119,7 @@ const Login = () => {
               {passtype ? <FaEyeSlash /> : <FaEye />}
             </span>
             <label className="label">
-              <Link to="/resetpassword" className="label-text-alt link link-hover">
+              <Link className="label-text-alt link link-hover">
                 Forgot password?
               </Link>
             </label>

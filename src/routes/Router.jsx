@@ -28,17 +28,16 @@ import TakeAssignmnet from "../components/TakeAssignmnet";
     {
       path: "/update/:id",
       element:<PrivetRoute><Update /></PrivetRoute> ,
-      loader:({params})=>fetch(`http://localhost:5000/assignment/${params.id}`)
+      loader:({params})=>fetch(`http://localhost:5000/assignment/${params.id}`,{credentials: 'include'})
     },
     {
       path: "/details/:id",
-      element:<PrivetRoute><AssignmentDetails /></PrivetRoute> ,
-      loader:({params})=>fetch(`http://localhost:5000/assignment/${params.id}`)
+      element:<PrivetRoute><AssignmentDetails /></PrivetRoute> 
     },
     {
       path: "/take/:id",
       element:<PrivetRoute><TakeAssignmnet /></PrivetRoute> ,
-      loader:({params})=>fetch(`http://localhost:5000/assignment/${params.id}`)
+      loader:({params})=>fetch(`http://localhost:5000/assignment/${params.id}`,{credentials: 'include'})
     },
     {
       path: "/pendingassignments",

@@ -6,6 +6,7 @@ import { AuthContext } from "../provider/AuthProvider";
 import { useNavigate } from "react-router-dom";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import axios from "axios";
 
 const CreateAssignment = () => {
   const { user } = useContext(AuthContext);
@@ -40,17 +41,11 @@ const CreateAssignment = () => {
       date
     };
 
-    fetch(`http://localhost:5000/addnewassignment`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formData),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        if(data.acknowledged){
+    axios.post(`http://localhost:5000/addnewassignment`,formData,{withCredentials:true} )
+      
+      .then((res) => {
+        console.log(res.data);
+        if(res.data.acknowledged){
           Swal.fire({
             title: 'Success!',
             text: 'Assignment added succesfully',

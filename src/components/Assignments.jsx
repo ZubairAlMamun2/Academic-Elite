@@ -12,8 +12,8 @@ const Assignments = () => {
   const [data,setData]=useState(loadeddata);
   console.log(data)
   const handledelete = (_id,email) => {
-    console.log(_id,email,user.email)
-    if(email!==user.email){
+    console.log(_id,email)
+    if(email!==user?.email){
       Swal.fire({
         title: 'Error!',
         text: "You Can't Delete it, Cause This is not created by you!",
