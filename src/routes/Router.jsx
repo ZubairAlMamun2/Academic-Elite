@@ -14,6 +14,7 @@ import PrivetRoute from "./PrivetRoute";
 import Update from "../components/Update";
 import AssignmentDetails from "../components/AssignmentDetails";
 import TakeAssignmnet from "../components/TakeAssignmnet";
+import Givemark from "../components/Givemark";
 
   const router = createBrowserRouter([
     {
@@ -50,6 +51,10 @@ import TakeAssignmnet from "../components/TakeAssignmnet";
     {
       path: "/myaemptedassignments",
       element:<PrivetRoute><MyAemptedAssignments /></PrivetRoute>,
+    },
+    {
+      path: "/givemark/:id",
+      element:<PrivetRoute><Givemark /></PrivetRoute>,
     },
     {
         path: "/auth",

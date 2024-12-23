@@ -4,6 +4,7 @@ import Footer from './Footer'
 import axios from 'axios'
 import { AuthContext } from '../provider/AuthProvider'
 import UseAxiosSecure from './UseAxiosSecure'
+import { Link } from 'react-router-dom'
 
 
 const PendingAssign = () => {
@@ -13,15 +14,52 @@ const PendingAssign = () => {
   useEffect(()=>{
     axiossecure.get(`http://localhost:5000/pendingassignment`)
     .then((res)=>{
-      console.log(res.data)
       setAssignment(res.data)
+      const filtredassignment=res.data.filter(item=>item.status=="pending")
+      setAssignment(filtredassignment);
+      console.log(assignment)
   })
   },[user.email])
+  
+  
   return (
     <div className='w-11/12 mx-auto'>
         <NavBar />
         <div className=" min-h-[60vh]">
-            {assignment.length}
+        <div>
+            <h2 className="text-xl font-md">Pending Assignments: {assignment.length}</h2>
+            <div className="overflow-x-auto">
+                <table className="table">
+                    {/* head */}
+                    <thead>
+                        <tr className='border'>
+                            <th className='border'>Title</th>
+                            <th className='border'>Marks</th>
+                            <th className='border'>Submited By</th>
+                            <th className='border'></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {/* row 1 */}
+                        {
+                            assignment.map(item => <tr className='border' key={item._id}>
+                                
+                                <td className='border'>
+                                  {item.title}
+                                </td>
+                                <td className='border'>
+                                  {item.marks}
+                                    </td>
+                                <td className='border'>{item?.name}</td>
+                                <th className='border'>
+                                    <Link to={`/givemark/${item._id}`} className="btn btn-primary btn-xs">Give Marks</Link>
+                                </th>
+                            </tr>)
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
         </div>
         <Footer />
     </div>

@@ -5,13 +5,15 @@ import { Link, useLoaderData, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import DatePicker from "react-datepicker";
 import { AuthContext } from "../provider/AuthProvider";
+import UseAxiosSecure from "./UseAxiosSecure";
 
 
 const Update = () => {
-  const user=useContext(AuthContext)
+  const {user}=useContext(AuthContext)
   const data = useLoaderData();
   console.log(data);
   const navigate = useNavigate();
+  const axiossecure=UseAxiosSecure();
 
 
   console.log(data.title)
@@ -46,17 +48,10 @@ const Update = () => {
       };
 
     console.log(formData);
-    fetch(`http://localhost:5000/update/${data._id}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formData),
-    })
-      .then((res) => res.json())
+    axiossecure.put(`http://localhost:5000/update/${data._id}`,formData,{withCredentials:true})
       .then((res) => {
-        console.log(res);
-        if (res.modifiedCount > 0) {
+        console.log(res.data);
+        if (res.data.modifiedCount > 0) {
             Swal.fire({
                 title: 'Success!',
                 text: 'Assignment Updated succesfully',

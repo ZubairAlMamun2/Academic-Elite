@@ -8,6 +8,7 @@ import UseAxiosSecure from './UseAxiosSecure';
 
 const TakeAssignmnet = () => {
     const {user}=useContext(AuthContext)
+    console.log(user)
     const data =useLoaderData();
     const axiossecure=UseAxiosSecure()
     const navigate =useNavigate();
@@ -21,6 +22,7 @@ const TakeAssignmnet = () => {
     const notes = form.get("notes");
     const marks = data.marks;
     const email = user.email;
+    const name = user.displayName;
     const obtainedmarks=0;
     const status="pending";
     const feedback="";
@@ -37,7 +39,8 @@ const TakeAssignmnet = () => {
         status,
         feedback,
         date,
-        assignment_id
+        assignment_id,
+        name
       };
 
       axiossecure.post(`http://localhost:5000/takeassignment`,formData,{withCredentials:true}  )
