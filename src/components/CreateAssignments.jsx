@@ -10,6 +10,7 @@ import axios from "axios";
 
 const CreateAssignment = () => {
   const { user } = useContext(AuthContext);
+  const [type1, setType] = useState('easy');
   console.log(user);
   const navigate=useNavigate()
   const [startDate, setStartDate] = useState(new Date());
@@ -20,7 +21,7 @@ const CreateAssignment = () => {
     const form = new FormData(e.target);
     const title = form.get("title");
     const photo = form.get("photo");
-    const type = form.get("type");
+    const type = type1;
     const marks = form.get("marks");
     const description = form.get("description");
     const date = startDate;
@@ -103,7 +104,7 @@ const CreateAssignment = () => {
                 Assignment difficulty level
                 </span>
               </label>
-              <select
+              {/* <select
                 name="type"
                 required
                 className="select select-bordered w-full "
@@ -115,6 +116,18 @@ const CreateAssignment = () => {
                 <option>medium</option>
                 <option>hard</option>
                 
+              </select> */}
+              <select
+                onChange={(e) => setType(e.target.value)}
+                required
+                value={type1}
+              >
+                <option disabled selected value="">
+                  Select Difficulty
+                </option>
+                <option value="easy">Easy</option>
+                <option value="medium">Medium</option>
+                <option value="hard">Hard</option>
               </select>
             </div>
             <div className="form-control">
