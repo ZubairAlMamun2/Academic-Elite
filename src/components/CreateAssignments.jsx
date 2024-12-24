@@ -42,7 +42,7 @@ const CreateAssignment = () => {
       date
     };
 
-    axios.post(`http://localhost:5000/addnewassignment`,formData,{withCredentials:true} )
+    axios.post(`https://group-study-zeta.vercel.app/addnewassignment`,formData,{withCredentials:true} )
       
       .then((res) => {
         console.log(res.data);

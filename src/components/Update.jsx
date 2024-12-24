@@ -52,7 +52,7 @@ const Update = () => {
 
     console.log(formData);
     axiossecure
-      .put(`http://localhost:5000/update/${data._id}`, formData, {
+      .put(`https://group-study-zeta.vercel.app/update/${data._id}`, formData, {
         withCredentials: true,
       })
       .then((res) => {

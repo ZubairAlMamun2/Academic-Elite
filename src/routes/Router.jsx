@@ -24,12 +24,12 @@ import Givemark from "../components/Givemark";
     {
       path: "/assignments",
       element:<Assignments />,
-      loader:()=>fetch(`http://localhost:5000/allassignments`)
+      loader:()=>fetch(`https://group-study-zeta.vercel.app/allassignments`)
     },
     {
       path: "/update/:id",
       element:<PrivetRoute><Update /></PrivetRoute> ,
-      loader:({params})=>fetch(`http://localhost:5000/assignment/${params.id}`,{credentials: 'include'})
+      loader:({params})=>fetch(`https://group-study-zeta.vercel.app/assignment/${params.id}`,{credentials: 'include'})
     },
     {
       path: "/details/:id",
@@ -38,7 +38,7 @@ import Givemark from "../components/Givemark";
     {
       path: "/take/:id",
       element:<PrivetRoute><TakeAssignmnet /></PrivetRoute> ,
-      loader:({params})=>fetch(`http://localhost:5000/assignment/${params.id}`,{credentials: 'include'})
+      loader:({params})=>fetch(`https://group-study-zeta.vercel.app/assignment/${params.id}`,{credentials: 'include'})
     },
     {
       path: "/pendingassignments",
@@ -55,7 +55,7 @@ import Givemark from "../components/Givemark";
     {
       path: "/givemark/:id",
       element:<PrivetRoute><Givemark /></PrivetRoute>,
-      loader:({params})=>fetch(`http://localhost:5000/pendingassignment/${params.id}`,{credentials: 'include'})
+      loader:({params})=>fetch(`https://group-study-zeta.vercel.app/pendingassignment/${params.id}`,{credentials: 'include'})
     },
     {
         path: "/auth",

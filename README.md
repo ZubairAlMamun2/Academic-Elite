@@ -1,8 +1,20 @@
-# React + Vite
+# Academic Elite (https://crowdcube-1971.netlify.app/)
+ 
+## Purpose 
+- Academic Elite website is a platform where student will build online group study with friends (Every registered student is a friend of others). Student can create assignments, complete them, and grade their friends' assignments
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+##  NPM packages
 
-Currently, two official plugins are available:
+- react-sweetalert2
+- react-icon
+- axios
+- etc..
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## key features
+- In this project we use firebase to authentacet user
+- Hosting the project in Netlify
+- In this project Only add assignment LogedIn users
+- We also use useContext Api
+- Data storage in mongodb
+- using JWT verification
+- etc..

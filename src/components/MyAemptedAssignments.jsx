@@ -11,7 +11,7 @@ const MyAemptedAssignments = () => {
   const axiossecure = UseAxiosSecure();
   const [assignment, setAssignment] = useState([]);
   useEffect(() => {
-    axiossecure.get(`http://localhost:5000/attemptassignment`).then((res) => {
+    axiossecure.get(`https://group-study-zeta.vercel.app/attemptassignment`).then((res) => {
       // console.log(res.data);
       const allAssignments = res.data;
       // console.log('check this',assignment[0].email)

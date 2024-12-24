@@ -3,10 +3,11 @@ import Footer from '../components/Footer'
 import ThemeToggle from '../components/ThemeTogole'
 import NavBar from '../components/Navbar'
 import Banner from '../components/Banner'
-import AssignmentTab from '../components/AssignmentTab'
-import Faqsection from '../components/Faqsection'
-import PendingTab from '../components/PendingTab'
-import AddnewAssignmentTab from '../components/AddnewAssignmentTab'
+import AssignmentTab from '../tabs/AssignmentTab'
+import PendingTab from '../tabs/PendingTab'
+import AddnewAssignmentTab from '../tabs/AddnewAssignmentTab'
+import Faqsection from '../tabs/Faqsection'
+
 
 const HomeLayouts = () => {
   return (

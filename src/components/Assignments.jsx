@@ -37,7 +37,7 @@ const Assignments = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/assignment/${_id}`, {
+        fetch(`https://group-study-zeta.vercel.app/assignment/${_id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())
@@ -58,7 +58,7 @@ const Assignments = () => {
   };
 
   const fetchAssignments = () => {
-    let url = `http://localhost:5000/assignments?`;
+    let url = `https://group-study-zeta.vercel.app/assignments?`;
 
     // Append query parameters for filtering and searching
     if (difficulty) url += `difficulty=${difficulty}&`;

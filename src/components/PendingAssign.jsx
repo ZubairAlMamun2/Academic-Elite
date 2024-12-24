@@ -14,7 +14,7 @@ const PendingAssign = () => {
   const navigate=useNavigate()
   const [assignment,setAssignment]=useState([]);
   useEffect(()=>{
-    axiossecure.get(`http://localhost:5000/pendingassignment`)
+    axiossecure.get(`https://group-study-zeta.vercel.app/pendingassignment`)
     .then((res)=>{
       setAssignment(res.data)
       const filtredassignment=res.data.filter(item=>item.status=="pending")

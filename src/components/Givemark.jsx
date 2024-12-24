@@ -30,7 +30,7 @@ const Givemark = () => {
           };
     
         console.log(formData,data._id);
-        axiossecure.put(`http://localhost:5000/givemark/${data._id}`,formData,{withCredentials:true})
+        axiossecure.put(`https://group-study-zeta.vercel.app/givemark/${data._id}`,formData,{withCredentials:true})
           .then((res) => {
             console.log(res.data);
             if (res.data.modifiedCount > 0) {

@@ -11,7 +11,7 @@ const AssignmentDetails = () => {
     const { id } = useParams();
 
    useEffect(()=>{
-    axiossecure.get(`http://localhost:5000/assignment/${id}`)
+    axiossecure.get(`https://group-study-zeta.vercel.app/assignment/${id}`)
     .then(res=>setData(res.data))
    },[])
 

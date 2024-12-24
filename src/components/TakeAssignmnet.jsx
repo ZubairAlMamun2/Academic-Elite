@@ -43,7 +43,7 @@ const TakeAssignmnet = () => {
         name
       };
 
-      axiossecure.post(`http://localhost:5000/takeassignment`,formData,{withCredentials:true}  )
+      axiossecure.post(`https://group-study-zeta.vercel.app/takeassignment`,formData,{withCredentials:true}  )
             
             .then((res) => {
               console.log(res.data);
