@@ -1,4 +1,4 @@
-# Academic Elite (https://crowdcube-1971.netlify.app/)
+# Academic Elite (https://academicelit.netlify.app/)
  
 ## Purpose 
 - Academic Elite website is a platform where student will build online group study with friends (Every registered student is a friend of others). Student can create assignments, complete them, and grade their friends' assignments
