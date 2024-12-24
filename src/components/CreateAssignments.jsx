@@ -122,7 +122,7 @@ const CreateAssignment = () => {
                 required
                 value={type1}
               >
-                <option disabled selected value="">
+                <option disabled value="">
                   Select Difficulty
                 </option>
                 <option value="easy">Easy</option>

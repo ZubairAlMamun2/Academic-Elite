@@ -86,7 +86,7 @@ const Assignments = () => {
     <div className="w-11/12 mx-auto">
       <NavBar />
 
-     <div className="flex justify-center gap-5 my-5">
+     <div className="md:flex justify-center gap-5 my-5">
      <input
         type="text"
         placeholder="Search assignments..."
@@ -95,7 +95,7 @@ const Assignments = () => {
         className="input input-bordered mb-4"
       />
 
-      <select
+      <select className="h-12 border-gray-400 border-2 rounded-md"
         onChange={(e) => setDifficulty(e.target.value)} required 
         value={difficulty}
       >

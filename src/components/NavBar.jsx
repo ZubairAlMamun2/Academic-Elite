@@ -14,7 +14,7 @@ const NavBar = () => {
     <div className="navbar bg-base-200 broder-none rounded-b-lg mb-5 mt-1">
       <div className="navbar-start">
         <div className="dropdown">
-          <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
+          <div tabIndex={0} role="button" className="btn btn-ghost -mr-3 md:mr-0 lg:hidden">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-5 w-5"
@@ -41,8 +41,8 @@ const NavBar = () => {
             </div>
           </ul>
         </div>
-        <a className="btn -ml-5 md:-ml-0  btn-ghost text-xl">
-        Crowdcube
+        <a className="btn  -ml-5 md:-ml-0  btn-ghost text-lg md:text-xl">
+        Academic Elite
         </a>
       </div>
       <div className="navbar-center hidden lg:flex">
@@ -73,7 +73,7 @@ const NavBar = () => {
           </ul>
         </div>
         }
-        {user?<button onClick={Logout} className='btn btn-primary text-base-100 px-3 py-1'>Log Out</button>:<div ><Link to="/auth/login" className='btn btn-primary text-base-100 px-3 mr-2 py-1 '>Login</Link><Link to="/auth/register" className='btn btn-primary text-base-100 px-3 py-1 '>Register</Link></div>}
+        {user?<button onClick={Logout} className='btn btn-primary text-base-100 btn-xs md:btn-md px-3 py-1'>Log Out</button>:<div ><Link to="/auth/login" className='btn btn-primary text-base-100 px-3 mr-2 py-1 '>Login</Link><Link to="/auth/register" className='btn btn-primary text-base-100 px-3 py-1 '>Register</Link></div>}
       </div>
     </div>
   );
