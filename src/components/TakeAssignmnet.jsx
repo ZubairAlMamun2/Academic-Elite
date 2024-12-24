@@ -8,7 +8,7 @@ import UseAxiosSecure from './UseAxiosSecure';
 
 const TakeAssignmnet = () => {
     const {user}=useContext(AuthContext)
-    console.log(user)
+
     const data =useLoaderData();
     const axiossecure=UseAxiosSecure()
     const navigate =useNavigate();

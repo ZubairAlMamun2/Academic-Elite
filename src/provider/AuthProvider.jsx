@@ -21,6 +21,14 @@ const provider = new GoogleAuthProvider();
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [theme, setTheme] = useState(
+      localStorage.getItem("theme") || "light"
+    );
+    useEffect(() => {
+      document.documentElement.setAttribute("data-theme", theme);
+      localStorage.setItem("theme", theme); // Persist theme in localStorage
+    }, [theme]);
+
 
 
   const createNewUser = (email, password) => {
@@ -52,7 +60,7 @@ const AuthProvider = ({ children }) => {
 
   
 
-  const UserInfo = { user, setUser, createNewUser, Logout, Login, loading,UpdateUserProfile,SignInWithGoogle,ResetUserPassword };
+  const UserInfo = { user,setTheme,theme, setUser, createNewUser, Logout, Login, loading,UpdateUserProfile,SignInWithGoogle,ResetUserPassword };
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentuser) => {

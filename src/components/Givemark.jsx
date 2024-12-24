@@ -1,7 +1,7 @@
 import React from 'react'
 import NavBar from './Navbar'
 import Footer from './Footer'
-import { Link, useLoaderData, useNavigate, useParams } from 'react-router-dom'
+import { Link, useLoaderData, useLocation, useNavigate, useParams } from 'react-router-dom'
 import UseAxiosSecure from './UseAxiosSecure'
 import Swal from 'sweetalert2'
 
@@ -11,6 +11,9 @@ const Givemark = () => {
     console.log(data._id)
     const axiossecure=UseAxiosSecure()
     const navigate=useNavigate();
+    let location=useLocation();
+    console.log(location.pathname)
+    location.pathname='/pendingassignments'
 
     const handleupdate = (e) => {
         
@@ -27,7 +30,7 @@ const Givemark = () => {
           };
     
         console.log(formData,data._id);
-        axiossecure.put(`http://localhost:5000/givemark/${data._id}`,formData)
+        axiossecure.put(`http://localhost:5000/givemark/${data._id}`,formData,{withCredentials:true})
           .then((res) => {
             console.log(res.data);
             if (res.data.modifiedCount > 0) {

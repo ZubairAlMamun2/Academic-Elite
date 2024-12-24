@@ -6,16 +6,18 @@ import Swal from "sweetalert2";
 import { AuthContext } from "../provider/AuthProvider";
 
 const Assignments = () => {
+  const{user}=useContext(AuthContext)
+  
   const loadeddata = useLoaderData();
-  const { user } = useContext(AuthContext);
+  // const { user } = useContext(AuthContext);
   const [search, setSearch] = useState("");
   const [difficulty, setDifficulty] = useState("");
   const navigate =useNavigate()
 
   const [data, setData] = useState(loadeddata);
-  console.log(data);
+  // console.log(data);
   const handledelete = (_id, email) => {
-    console.log(_id, email);
+    // console.log(_id, email);
     if (email !== user?.email) {
       Swal.fire({
         title: "Error!",

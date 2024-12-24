@@ -19,7 +19,7 @@ const PendingAssign = () => {
       setAssignment(res.data)
       const filtredassignment=res.data.filter(item=>item.status=="pending")
       setAssignment(filtredassignment);
-      console.log(assignment)
+      // console.log(assignment)
   })
   },[user.email])
   
