@@ -8,6 +8,7 @@ import NavBar from '../components/NavBar';
 import ThemeToggle from '../components/ThemeTogole';
 import Footer from '../components/Footer';
 import FeaturesSection from '../tabs/Featured';
+import StatisticsSection from '../tabs/AssignmentTab';
 
 
 const HomeLayouts = () => {
@@ -20,9 +21,8 @@ const HomeLayouts = () => {
         <ThemeToggle /> {/* Theme toggle button will appear here */}
       </div>
       <Banner />
+      <StatisticsSection />
       <FeaturesSection />
-      <PendingTab />
-      <AddnewAssignmentTab />
       <Faqsection />
       <Footer/>
     </div>

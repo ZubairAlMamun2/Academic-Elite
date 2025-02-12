@@ -47,13 +47,16 @@ const NavBar = () => {
             <NavLink to="/" className={({ isActive }) => isActive ? "text-purple-400" : "text-white hover:text-gray-400"} onClick={toggleMenu}>Home</NavLink>
             <NavLink to="/assignments" className={({ isActive }) => isActive ? "text-purple-400" : "text-white hover:text-gray-400"} onClick={toggleMenu}>Assignments</NavLink>
             <NavLink to="/pendingassignments" className={({ isActive }) => isActive ? "text-purple-400" : "text-white hover:text-gray-400"} onClick={toggleMenu}>Pending Assignments</NavLink>
-            {user && (
+            {user ? (
               <>
                 <NavLink to="/createassignments" className={({ isActive }) => isActive ? "text-purple-400" : "text-white hover:text-gray-400"} onClick={toggleMenu}>Create Assignments</NavLink>
                 <NavLink to="/myaemptedassignments" className={({ isActive }) => isActive ? "text-purple-400" : "text-white hover:text-gray-400"} onClick={toggleMenu}>My Attempted Assignments</NavLink>
                 <button onClick={Logout} className="btn bg-red-500 text-white px-3 py-1 w-full">Log Out</button>
               </>
-            )}
+            ):<div className="flex space-x-2">
+            <Link to="/auth/login" className="btn  text-white border-none bg-purple-500 hover:bg-purple-600 rounded-md">Login</Link>
+            <Link to="/auth/register" className="btn  text-white border-none bg-purple-500 hover:bg-purple-600 rounded-md">Register</Link>
+          </div>}
           </motion.div>
         )}
       </AnimatePresence>
@@ -61,12 +64,12 @@ const NavBar = () => {
         {user ? (
           <div className="flex items-center gap-1"> 
             <img title={user.displayName} className="w-10 h-10 border rounded-full" src={user.photoURL} alt="User" />
-            <button onClick={Logout} className="btn bg-red-500 text-white px-3 py-1">Log Out</button>
+            <button onClick={Logout} className="btn  text-white border-none bg-purple-500 hover:bg-purple-600 rounded-md">Log Out</button>
           </div>
         ) : (
           <div className="flex space-x-2">
-            <Link to="/auth/login" className="btn bg-blue-500 text-white px-3 py-1">Login</Link>
-            <Link to="/auth/register" className="btn bg-green-500 text-white px-3 py-1">Register</Link>
+            <Link to="/auth/login" className="btn  text-white border-none bg-purple-500 hover:bg-purple-600 rounded-md">Login</Link>
+            <Link to="/auth/register" className="btn  text-white border-none bg-purple-500 hover:bg-purple-600 rounded-md">Register</Link>
           </div>
         )}
       </div>

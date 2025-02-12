@@ -1,117 +1,107 @@
-import React from 'react'
-import NavBar from './Navbar'
-import Footer from './Footer'
-import { Link, useLoaderData, useLocation, useNavigate, useParams } from 'react-router-dom'
-import UseAxiosSecure from './UseAxiosSecure'
-import Swal from 'sweetalert2'
+import React from "react";
+import Footer from "./Footer";
+import { Link, useLoaderData, useNavigate } from "react-router-dom";
+import UseAxiosSecure from "./UseAxiosSecure";
+import Swal from "sweetalert2";
+import NavBar from "./NavBar";
 
 const Givemark = () => {
-   
-    const data=useLoaderData()
-    // console.log(data._id)
-    const axiossecure=UseAxiosSecure()
-    const navigate=useNavigate();
-    let location=useLocation();
-    // console.log(location.pathname)
-    location.pathname='/pendingassignments'
+  const data = useLoaderData();
+  const axiosSecure = UseAxiosSecure();
+  const navigate = useNavigate();
 
-    const handleupdate = (e) => {
-        
-        e.preventDefault();
-        const form = new FormData(e.target);
-        const obtainedmarks= form.get("obtainedmarks");
-        const feedback = form.get("feedback");
-        const status="completed"
-    
-        const formData = {
-            obtainedmarks,
-            feedback,
-            status,
-          };
-    
-        // console.log(formData,data._id);
-        axiossecure.put(`https://group-study-zeta.vercel.app/givemark/${data._id}`,formData,{withCredentials:true})
-          .then((res) => {
-            // console.log(res.data);
-            if (res.data.modifiedCount > 0) {
-                Swal.fire({
-                    title: 'Success!',
-                    text: 'Assignment marked succesfully',
-                    icon: 'success',
-                    confirmButtonText: 'Cool'
-                  })
-                  navigate("/pendingassignments");
-            }
+  const handleUpdate = (e) => {
+    e.preventDefault();
+    const form = new FormData(e.target);
+    const obtainedmarks = form.get("obtainedmarks");
+    const feedback = form.get("feedback");
+    const status = "completed";
+
+    const formData = { obtainedmarks, feedback, status };
+
+    axiosSecure
+      .put(`https://group-study-zeta.vercel.app/givemark/${data._id}`, formData, {
+        withCredentials: true,
+      })
+      .then((res) => {
+        if (res.data.modifiedCount > 0) {
+          Swal.fire({
+            title: "Success!",
+            text: "Assignment marked successfully",
+            icon: "success",
+            confirmButtonText: "Cool",
           });
-      };
-
+          navigate("/pendingassignments");
+        }
+      });
+  };
 
   return (
-    <div className='w-11/12 mx-auto'>
-        <NavBar />
-        <div className="min-h-screen flex justify-center items-center">
-        <div className="card rounded-none bg-base-100 w-full max-w-lg shrink-0 p-10">
-          <h2 className="text-2xl font-semibold text-center">
-            Check Assignment Page
-          </h2>
-          <form onSubmit={handleupdate} className="card-body p-0">
-
-            <div className='mt-5 font-semibold text-center' >
-                {data.title}
-            </div>
-            <div  >
-                <p className='font-semibold'>Google Doc link:</p> <a target='blank' href={data.link}>{data.link}</a>
-            </div>
-            <div className=''>
-              <p className='font-semibold'> Notes: </p> {data.notes}
+    <div className="bg-gradient-to-br from-[#1e293b] to-[#0f172a] min-h-screen text-white">
+      <NavBar />
+      <div className="flex justify-center my-4 items-center min-h-[85vh] px-4">
+        <div className="w-full max-w-lg bg-[#0f172a] p-8 rounded-2xl shadow-lg border border-gray-700">
+          <h2 className="text-2xl font-bold text-center text-gray-200">Check Assignment</h2>
+          <form onSubmit={handleUpdate} className="mt-6">
+            <div className="mb-4">
+              <h3 className="text-lg font-semibold text-gray-300">{data.title}</h3>
+              <p className="text-sm text-gray-400 mt-1">Marks: {data.marks}</p>
             </div>
 
+            <div className="mb-4">
+              <p className="font-semibold text-gray-300">Google Doc Link: 
+              <a href={data.link} target="_blank" rel="noopener noreferrer" className="bg-purple-500 hover:bg-purple-600 px-3 py-1 rounded-md">
+                see pdf
+              </a>
+              </p>
+            </div>
 
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text text-sm font-semibold">
-                 Marks
-                </span>
-              </label>
+            <div className="mb-4">
+              <p className="font-semibold text-gray-300">Notes:</p>
+              <p className="text-gray-400">{data.notes || "No additional notes provided."}</p>
+            </div>
+
+            <div className="mb-4">
+              <label className="block text-sm font-semibold text-gray-300">Marks</label>
               <input
                 name="obtainedmarks"
                 type="number"
-                placeholder="input marks"
-                className="input input-bordered"
+                placeholder="Enter obtained marks"
+                className="w-full p-3 bg-gray-800 border border-gray-600 rounded-lg focus:ring-2 focus:ring-purple-500"
                 required
                 max={data.marks}
               />
             </div>
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text text-sm font-semibold">
-                Feedback
-                </span>
-              </label>
+
+            <div className="mb-4">
+              <label className="block text-sm font-semibold text-gray-300">Feedback</label>
               <textarea
                 name="feedback"
+                className="w-full p-3 bg-gray-800 border border-gray-600 rounded-lg focus:ring-2 focus:ring-purple-500"
+                placeholder="Provide feedback"
                 required
-                className="textarea textarea-bordered"
-                placeholder="give some feedback"
               ></textarea>
             </div>
 
-
-            <div className="form-control mt-6">
-              <button className="btn btn-neutral rounded-none">Submit</button>
-            </div>
+            <button
+              type="submit"
+              className="w-full p-3 bg-purple-500 text-white font-semibold rounded-lg hover:bg-purple-600 transition"
+            >
+              Submit
+            </button>
           </form>
 
-          <div className=" mt-6">
-          <Link className="btn btn-primary flex justify-center rounded-none" to={`/pendingassignments`}>Go Back</Link>
-            </div>
-          <div className="pt-2"></div>
+          <Link
+            to="/pendingassignments"
+            className="block text-center mt-4 p-3 bg-gray-700 text-gray-300 font-semibold rounded-lg hover:bg-gray-600 transition"
+          >
+            Go Back
+          </Link>
         </div>
       </div>
-
-        <Footer />
+      <Footer />
     </div>
-  )
-}
+  );
+};
 
-export default Givemark
+export default Givemark;

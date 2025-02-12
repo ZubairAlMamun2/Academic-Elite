@@ -25,7 +25,7 @@ const FeaturesSection = () => {
   ];
 
   return (
-    <section className="py-16 mx-4 lg:mx-6 rounded-lg my-4 bg-gradient-to-br from-[#1e293b] to-[#0f172a] text-white">
+    <section className="py-16 mx-4 lg:mx-6 rounded-lg my-4 bg-gray-900 text-white">
       <div className="container mx-auto px-5">
         <div className="max-w-2xl mx-auto text-center mb-10">
           <h2 className="text-3xl font-bold text-gray-200 mb-4">
