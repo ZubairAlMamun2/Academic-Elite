@@ -18,7 +18,7 @@ const HomeLayouts = () => {
       <PendingTab />
       <AddnewAssignmentTab />
       <Faqsection />
-      <Footer />
+      <Footer/>
     </div>
   );
 };
