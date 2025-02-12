@@ -66,7 +66,7 @@ const CreateAssignment = () => {
           </h2>
 
           <form onSubmit={handleSubmit} className="space-y-4">
-            {/* Title */}
+            
             <div>
               <label className="block text-sm font-semibold mb-1">
                 Assignment Title
@@ -80,7 +80,7 @@ const CreateAssignment = () => {
               />
             </div>
 
-            {/* Thumbnail */}
+            
             <div>
               <label className="block text-sm font-semibold mb-1">
                 Thumbnail URL
@@ -94,7 +94,7 @@ const CreateAssignment = () => {
               />
             </div>
 
-            {/* Difficulty Level */}
+            
             <div>
               <label className="block text-sm font-semibold mb-1">
                 Assignment Difficulty Level
@@ -114,7 +114,7 @@ const CreateAssignment = () => {
               </select>
             </div>
 
-            {/* Marks */}
+            
             <div>
               <label className="block text-sm font-semibold mb-1">Marks</label>
               <input
@@ -126,7 +126,7 @@ const CreateAssignment = () => {
               />
             </div>
 
-            {/* Description */}
+           
             <div>
               <label className="block text-sm font-semibold mb-1">
                 Description
@@ -139,7 +139,7 @@ const CreateAssignment = () => {
               ></textarea>
             </div>
 
-            {/* Starting Date */}
+            
             <div>
               <label className="block text-sm font-semibold mb-1">
                 Starting Date
@@ -151,7 +151,7 @@ const CreateAssignment = () => {
               />
             </div>
 
-            {/* Submit Button */}
+            
             <div className="mt-4">
               <button
                 type="submit"

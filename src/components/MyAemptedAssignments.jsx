@@ -4,7 +4,7 @@ import { AuthContext } from "../provider/AuthProvider";
 import UseAxiosSecure from "./UseAxiosSecure";
 import NavBar from "./NavBar";
 import ThemeToggle from "./ThemeTogole";
-// import ThemeToggle from "./ThemeToggle"; // Importing the ThemeToggle component
+// import ThemeToggle from "./ThemeToggle"; 
 
 const MyAttemptedAssignments = () => {
   const { user } = useContext(AuthContext);
@@ -20,7 +20,7 @@ const MyAttemptedAssignments = () => {
         setAssignment(filteredData);
         setLoading(false);
       })
-      .catch(() => setLoading(false)); // Stop loading on error
+      .catch(() => setLoading(false));
   }, [user.email]);
 
   return (

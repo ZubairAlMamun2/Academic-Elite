@@ -21,7 +21,7 @@ const ThemeToggle = () => {
   return (
     <div className="flex justify-center m-2">
       <button
-        className="btn  text-white bg-purple-500 hover:bg-purple-600 rounded-md"
+        className="btn  text-white border-none bg-purple-500 hover:bg-purple-600 rounded-md"
         onClick={toggleTheme}
       >
         {theme === "light" ? <Moon size={18} /> : <Sun size={18} />}

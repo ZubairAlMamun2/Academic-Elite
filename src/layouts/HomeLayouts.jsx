@@ -1,12 +1,14 @@
 import React from 'react';
 import Banner from '../components/Banner';
-import AssignmentTab from '../tabs/AssignmentTab';
+
 import PendingTab from '../tabs/PendingTab';
 import AddnewAssignmentTab from '../tabs/AddnewAssignmentTab';
 import Faqsection from '../tabs/Faqsection';
 import NavBar from '../components/NavBar';
 import ThemeToggle from '../components/ThemeTogole';
 import Footer from '../components/Footer';
+import FeaturesSection from '../tabs/Featured';
+
 
 const HomeLayouts = () => {
   return (
@@ -18,7 +20,7 @@ const HomeLayouts = () => {
         <ThemeToggle /> {/* Theme toggle button will appear here */}
       </div>
       <Banner />
-      <AssignmentTab />
+      <FeaturesSection />
       <PendingTab />
       <AddnewAssignmentTab />
       <Faqsection />
