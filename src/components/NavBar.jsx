@@ -61,7 +61,7 @@ const NavBar = () => {
         {user ? (
           <div className="flex items-center gap-1"> 
             <img title={user.displayName} className="w-10 h-10 border rounded-full" src={user.photoURL} alt="User" />
-            <button onClick={Logout} className="bg-purple-500 text-white px-4 py-2 rounded-lg inline-block mt-2 hover:bg-purple-600 transition-all">Log Out</button>
+            <button onClick={Logout} className="btn bg-red-500 text-white px-3 py-1">Log Out</button>
           </div>
         ) : (
           <div className="flex space-x-2">
