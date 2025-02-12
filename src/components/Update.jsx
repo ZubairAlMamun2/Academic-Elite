@@ -10,7 +10,7 @@ import UseAxiosSecure from "./UseAxiosSecure";
 const Update = () => {
   const { user } = useContext(AuthContext);
   const data = useLoaderData();
-  console.log(data);
+  // console.log(data);
   const navigate = useNavigate();
   const axiossecure = UseAxiosSecure();
   const [title1, setTitle] = useState(data.title);
@@ -19,7 +19,7 @@ const Update = () => {
   const [marks1, setMarks] = useState(data.marks);
   const [description1, setDescription] = useState(data.description);
 
-  console.log(data.title);
+  // console.log(data.title);
   //   const [title, setTitle] = useState(data.title);
 
   const handleupdate = (e) => {
@@ -50,13 +50,13 @@ const Update = () => {
       description,
     };
 
-    console.log(formData);
+    // console.log(formData);
     axiossecure
       .put(`https://group-study-zeta.vercel.app/update/${data._id}`, formData, {
         withCredentials: true,
       })
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         if (res.data.modifiedCount > 0) {
           Swal.fire({
             title: "Success!",

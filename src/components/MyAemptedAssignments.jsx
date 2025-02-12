@@ -29,7 +29,7 @@ const MyAemptedAssignments = () => {
   return (
     <div className="w-11/12 mx-auto">
       <NavBar />
-      <div className="grid gap-3 grid-cols-6 ">
+      <div className="grid gap-3 grid-cols-6 min-h-[60vh]">
         {
           assignment.map(items=>{
             return <div key={items._id} className="card col-span-6 md:col-span-3 lg:col-span-2 bg-base-100 shadow-xl">

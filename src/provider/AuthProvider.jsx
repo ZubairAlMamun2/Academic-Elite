@@ -69,14 +69,14 @@ const AuthProvider = ({ children }) => {
         const user={email:currentuser.email}
             axios.post('https://group-study-zeta.vercel.app/jwt',user,{withCredentials:true})
             .then((res)=>{
-                console.log(res.data)
+                // console.log(res.data)
                 setLoading(false);
             })
         }
         else{
             axios.post('https://group-study-zeta.vercel.app/logout',{},{withCredentials:true})
             .then((res)=>{
-                console.log('logout',res.data)
+                // console.log('logout',res.data)
                 setLoading(false);
             }) 
         }

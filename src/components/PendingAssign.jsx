@@ -1,11 +1,12 @@
 import React, { useContext, useEffect, useState } from 'react'
-import NavBar from './Navbar'
+
 import Footer from './Footer'
 import axios from 'axios'
 import { AuthContext } from '../provider/AuthProvider'
 import UseAxiosSecure from './UseAxiosSecure'
 import { Link, useNavigate } from 'react-router-dom'
 import Swal from 'sweetalert2'
+import NavBar from './NavBar'
 
 
 const PendingAssign = () => {
@@ -25,7 +26,7 @@ const PendingAssign = () => {
   
   
   return (
-    <div className='w-11/12 mx-auto'>
+    <div className=' mx-auto'>
         <NavBar />
         <div className=" min-h-[60vh]">
         <div>

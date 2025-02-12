@@ -20,13 +20,13 @@ const UseAxiosSecure = () => {
         },error=>{
 
             if(error.status==401||error.status==403){
-                console.log("need to logout")
+                // console.log("need to logout")
                 Logout()
                 .then(()=>{
-                    console.log("logout User")
+                    // console.log("logout User")
                     navigate('/auth/login')
                 })
-                .catch(error=>console.log(error))
+                
             }
             return Promise.reject(error);
         })

@@ -1,81 +1,76 @@
-import React, { useContext } from "react";
+import React, { useState, useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../provider/AuthProvider";
-// import { FaUserCircle } from "react-icons/fa";
-// import { AuthContext } from "../provider/Authprovider";
-
-
+import { Menu, X } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 
 const NavBar = () => {
-    const {user,Logout}=useContext(AuthContext)
-    
-  // console.log(user)
+  const { user, Logout } = useContext(AuthContext);
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsOpen(!isOpen);
+  };
+
   return (
-    <div className="navbar bg-base-200 broder-none rounded-b-lg mb-5 mt-1">
-      <div className="navbar-start">
-        <div className="dropdown">
-          <div tabIndex={0} role="button" className="btn btn-ghost -mr-3 md:mr-0 lg:hidden">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M4 6h16M4 12h8m-8 6h16"
-              />
-            </svg>
-          </div>
-          <ul
-            tabIndex={0}
-            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
+    <nav className="bg-gray-900 shadow-md px-4 py-4 md:px-6 sticky top-0 w-full z-50 flex justify-between items-center">
+      <h1 className="text-xl text-white font-bold">Academic Elite</h1>
+      <div className="hidden lg:flex flex-1 justify-center items-center space-x-6">
+        <NavLink to="/" className={({ isActive }) => isActive ? "text-purple-400" : "text-white hover:text-gray-400"}>Home</NavLink>
+        <NavLink to="/assignments" className={({ isActive }) => isActive ? "text-purple-400" : "text-white hover:text-gray-400"}>Assignments</NavLink>
+        <NavLink to="/pendingassignments" className={({ isActive }) => isActive ? "text-purple-400" : "text-white hover:text-gray-400"}>Pending Assignments</NavLink>
+        {user && (
+          <>
+            <NavLink to="/createassignments" className={({ isActive }) => isActive ? "text-purple-400" : "text-white hover:text-gray-400"}>Create Assignments</NavLink>
+            <NavLink to="/myaemptedassignments" className={({ isActive }) => isActive ? "text-purple-400" : "text-white hover:text-gray-400"}>My Attempted Assignments</NavLink>
+          </>
+        )}
+      </div>
+      <div className="flex items-center space-x-4">
+        {user && (
+          <img title={user.displayName} className="w-10 h-10 lg:hidden border rounded-full" src={user.photoURL} alt="User" />
+        )}
+        <div className="lg:hidden">
+          <button onClick={toggleMenu} className="focus:outline-none text-white">
+            {isOpen ? <X size={28} /> : <Menu size={28} />}
+          </button>
+        </div>
+      </div>
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            className="absolute top-full left-0 w-full bg-gray-900 text-white flex flex-col items-center space-y-4 py-4"
           >
-            <div className="flex justify-center flex-col gap-3 font-semibold text-base">
-            <NavLink to="/">Home</NavLink>
-            <NavLink to="/assignments">Assignments</NavLink>
-            <NavLink to="/pendingassignments">Pending Assignments</NavLink>
-            </div>
-          </ul>
-        </div>
-        <a className="btn  -ml-5 md:-ml-0  btn-ghost text-lg md:text-xl">
-        Academic Elite
-        </a>
-      </div>
-      <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1">
-        <div className="flex  gap-3 items-center font-semibold text-base">
-        <NavLink to="/">Home</NavLink>
-            <NavLink to="/assignments">Assignments</NavLink>
-            <NavLink to="/pendingassignments">Pending Assignments</NavLink>
-        </div>
-        </ul>
-      </div>
-      <div className="navbar-end">
-        {
-          user?.email &&
-          <div className="dropdown dropdown-end">
-          <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
-            <div className="w-10 rounded-full">
-            <div> <img title={user.displayName} className="w-10 h-10 border rounded-full" src={user.photoURL} /></div> </div>
+            <NavLink to="/" className={({ isActive }) => isActive ? "text-purple-400" : "text-white hover:text-gray-400"} onClick={toggleMenu}>Home</NavLink>
+            <NavLink to="/assignments" className={({ isActive }) => isActive ? "text-purple-400" : "text-white hover:text-gray-400"} onClick={toggleMenu}>Assignments</NavLink>
+            <NavLink to="/pendingassignments" className={({ isActive }) => isActive ? "text-purple-400" : "text-white hover:text-gray-400"} onClick={toggleMenu}>Pending Assignments</NavLink>
+            {user && (
+              <>
+                <NavLink to="/createassignments" className={({ isActive }) => isActive ? "text-purple-400" : "text-white hover:text-gray-400"} onClick={toggleMenu}>Create Assignments</NavLink>
+                <NavLink to="/myaemptedassignments" className={({ isActive }) => isActive ? "text-purple-400" : "text-white hover:text-gray-400"} onClick={toggleMenu}>My Attempted Assignments</NavLink>
+                <button onClick={Logout} className="btn bg-red-500 text-white px-3 py-1 w-full">Log Out</button>
+              </>
+            )}
+          </motion.div>
+        )}
+      </AnimatePresence>
+      <div className="hidden lg:flex items-center space-x-4">
+        {user ? (
+          <div className="flex items-center gap-1"> 
+            <img title={user.displayName} className="w-10 h-10 border rounded-full" src={user.photoURL} alt="User" />
+            <button onClick={Logout} className="bg-purple-500 text-white px-4 py-2 rounded-lg inline-block mt-2 hover:bg-purple-600 transition-all">Log Out</button>
           </div>
-          <ul
-            tabIndex={0}
-            className="menu menu-sm  dropdown-content bg-base-100 rounded-box z-[1] mt-0 -mr-5  
-            w-54  p-2 shadow">
-            <div className=" font-semibold text-base px-1">
-            <NavLink to="/createassignments">CreateAssignments</NavLink> <br />
-            <NavLink to="/myaemptedassignments">MyAemptedAssignments</NavLink>
-            </div>
-          </ul>
-        </div>
-        }
-        {user?<button onClick={Logout} className='btn btn-primary text-base-100 btn-xs md:btn-md px-3 py-1'>Log Out</button>:<div ><Link to="/auth/login" className='btn btn-primary text-base-100 px-3 mr-2 py-1 '>Login</Link><Link to="/auth/register" className='btn btn-primary text-base-100 px-3 py-1 '>Register</Link></div>}
+        ) : (
+          <div className="flex space-x-2">
+            <Link to="/auth/login" className="btn bg-blue-500 text-white px-3 py-1">Login</Link>
+            <Link to="/auth/register" className="btn bg-green-500 text-white px-3 py-1">Register</Link>
+          </div>
+        )}
       </div>
-    </div>
+    </nav>
   );
 };
 

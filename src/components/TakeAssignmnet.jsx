@@ -46,7 +46,7 @@ const TakeAssignmnet = () => {
       axiossecure.post(`https://group-study-zeta.vercel.app/takeassignment`,formData,{withCredentials:true}  )
             
             .then((res) => {
-              console.log(res.data);
+              // console.log(res.data);
               if(res.data.acknowledged){
                 Swal.fire({
                   title: 'Success!',

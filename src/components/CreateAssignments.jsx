@@ -11,7 +11,7 @@ import axios from "axios";
 const CreateAssignment = () => {
   const { user } = useContext(AuthContext);
   const [type1, setType] = useState('easy');
-  console.log(user);
+  // console.log(user);
   const navigate=useNavigate()
   const [startDate, setStartDate] = useState(new Date());
 
@@ -28,7 +28,7 @@ const CreateAssignment = () => {
     const email = user.email;
     const name = user.displayName;
     // const donatedby='';
-    console.log(startDate)
+    // console.log(startDate)
     // console.log(typeof(amount))
 
     const formData = {
@@ -45,7 +45,7 @@ const CreateAssignment = () => {
     axios.post(`https://group-study-zeta.vercel.app/addnewassignment`,formData,{withCredentials:true} )
       
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         if(res.data.acknowledged){
           Swal.fire({
             title: 'Success!',
@@ -57,7 +57,7 @@ const CreateAssignment = () => {
         }
       });
 
-    console.log(formData);
+    // console.log(formData);
     // e.target.reset();
   };
   return (

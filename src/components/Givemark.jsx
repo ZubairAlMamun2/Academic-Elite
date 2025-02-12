@@ -8,11 +8,11 @@ import Swal from 'sweetalert2'
 const Givemark = () => {
    
     const data=useLoaderData()
-    console.log(data._id)
+    // console.log(data._id)
     const axiossecure=UseAxiosSecure()
     const navigate=useNavigate();
     let location=useLocation();
-    console.log(location.pathname)
+    // console.log(location.pathname)
     location.pathname='/pendingassignments'
 
     const handleupdate = (e) => {
@@ -29,10 +29,10 @@ const Givemark = () => {
             status,
           };
     
-        console.log(formData,data._id);
+        // console.log(formData,data._id);
         axiossecure.put(`https://group-study-zeta.vercel.app/givemark/${data._id}`,formData,{withCredentials:true})
           .then((res) => {
-            console.log(res.data);
+            // console.log(res.data);
             if (res.data.modifiedCount > 0) {
                 Swal.fire({
                     title: 'Success!',
