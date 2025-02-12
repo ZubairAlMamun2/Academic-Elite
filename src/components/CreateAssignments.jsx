@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import NavBar from "./Navbar";
+import NavBar from "./NavBar";
 import Footer from "./Footer";
 import Swal from "sweetalert2";
 import { AuthContext } from "../provider/AuthProvider";
@@ -10,9 +10,8 @@ import axios from "axios";
 
 const CreateAssignment = () => {
   const { user } = useContext(AuthContext);
-  const [type1, setType] = useState('easy');
-  // console.log(user);
-  const navigate=useNavigate()
+  const [type1, setType] = useState("easy");
+  const navigate = useNavigate();
   const [startDate, setStartDate] = useState(new Date());
 
   const handleSubmit = (e) => {
@@ -27,9 +26,6 @@ const CreateAssignment = () => {
     const date = startDate;
     const email = user.email;
     const name = user.displayName;
-    // const donatedby='';
-    // console.log(startDate)
-    // console.log(typeof(amount))
 
     const formData = {
       title,
@@ -39,88 +35,75 @@ const CreateAssignment = () => {
       name,
       marks,
       description,
-      date
+      date,
     };
 
-    axios.post(`https://group-study-zeta.vercel.app/addnewassignment`,formData,{withCredentials:true} )
-      
+    axios
+      .post(`https://group-study-zeta.vercel.app/addnewassignment`, formData, {
+        withCredentials: true,
+      })
       .then((res) => {
-        // console.log(res.data);
-        if(res.data.acknowledged){
+        if (res.data.acknowledged) {
           Swal.fire({
-            title: 'Success!',
-            text: 'Assignment added succesfully',
-            icon: 'success',
-            confirmButtonText: 'Cool'
-          })
-          navigate('/assignments');
+            title: "Success!",
+            text: "Assignment added successfully",
+            icon: "success",
+            confirmButtonText: "Cool",
+          });
+          navigate("/assignments");
         }
       });
-
-    // console.log(formData);
-    // e.target.reset();
   };
+
   return (
-    <div className="w-11/12 mx-auto">
+    <div className="min-h-screen bg-gray-900 text-white ">
       <NavBar />
 
-      <div className="min-h-screen flex justify-center items-center">
-        <div className="card rounded-none bg-base-100 w-full max-w-lg shrink-0 p-10">
-          <h2 className="text-2xl font-semibold text-center">
-            Add New Assignment Page
+      <div className="flex justify-center items-center min-h-screen">
+        <div className="bg-gray-800 shadow-lg my-4 rounded-lg p-8 w-full max-w-lg">
+          <h2 className="text-2xl font-semibold text-center text-purple-400 mb-6">
+            Add New Assignment
           </h2>
-          <form onSubmit={handleSubmit} className="card-body p-0">
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text text-sm font-semibold">
-                Assignment title
-                </span>
+
+          <form onSubmit={handleSubmit} className="space-y-4">
+            {/* Title */}
+            <div>
+              <label className="block text-sm font-semibold mb-1">
+                Assignment Title
               </label>
               <input
                 name="title"
                 type="text"
-                placeholder="Assignment title"
-                className="input input-bordered"
+                placeholder="Enter assignment title"
+                className="w-full px-4 py-2 rounded-md bg-gray-700 text-white border border-gray-600 focus:ring-2 focus:ring-purple-400"
                 required
               />
             </div>
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text text-sm font-semibold">
-                  Thumbnail
-                </span>
+
+            {/* Thumbnail */}
+            <div>
+              <label className="block text-sm font-semibold mb-1">
+                Thumbnail URL
               </label>
               <input
                 name="photo"
                 type="text"
-                placeholder="Photo URL"
-                className="input input-bordered"
+                placeholder="Enter image URL"
+                className="w-full px-4 py-2 rounded-md bg-gray-700 text-white border border-gray-600 focus:ring-2 focus:ring-purple-400"
                 required
               />
             </div>
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text text-sm font-semibold">
-                Assignment difficulty level
-                </span>
+
+            {/* Difficulty Level */}
+            <div>
+              <label className="block text-sm font-semibold mb-1">
+                Assignment Difficulty Level
               </label>
-              {/* <select
-                name="type"
-                required
-                className="select select-bordered w-full "
-              >
-                <option disabled selected>
-                  Select Anyone
-                </option>
-                <option>easy</option>
-                <option>medium</option>
-                <option>hard</option>
-                
-              </select> */}
               <select
                 onChange={(e) => setType(e.target.value)}
                 required
                 value={type1}
+                className="w-full px-4 py-2 rounded-md bg-gray-700 text-white border border-gray-600 focus:ring-2 focus:ring-purple-400"
               >
                 <option disabled value="">
                   Select Difficulty
@@ -130,51 +113,54 @@ const CreateAssignment = () => {
                 <option value="hard">Hard</option>
               </select>
             </div>
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text text-sm font-semibold">
-                Marks
-                </span>
-              </label>
+
+            {/* Marks */}
+            <div>
+              <label className="block text-sm font-semibold mb-1">Marks</label>
               <input
                 name="marks"
                 type="number"
-                placeholder="marks"
-                className="input input-bordered"
+                placeholder="Enter marks"
+                className="w-full px-4 py-2 rounded-md bg-gray-700 text-white border border-gray-600 focus:ring-2 focus:ring-purple-400"
                 required
               />
             </div>
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text text-sm font-semibold">
-                  Description
-                </span>
+
+            {/* Description */}
+            <div>
+              <label className="block text-sm font-semibold mb-1">
+                Description
               </label>
               <textarea
                 name="description"
                 required
-                className="textarea textarea-bordered"
-                placeholder="description"
+                placeholder="Enter description"
+                className="w-full px-4 py-2 rounded-md bg-gray-700 text-white border border-gray-600 focus:ring-2 focus:ring-purple-400"
               ></textarea>
             </div>
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text text-sm font-semibold">
-                  Starting Date: <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} />
-                </span>
-              </label>
-              
-            </div>
-            
-            
-            
 
-            <div className="form-control mt-6">
-              <button className="btn btn-neutral rounded-none">Add</button>
+            {/* Starting Date */}
+            <div>
+              <label className="block text-sm font-semibold mb-1">
+                Starting Date
+              </label>
+              <DatePicker
+                selected={startDate}
+                onChange={(date) => setStartDate(date)}
+                className="w-full px-4 py-2 rounded-md bg-gray-700 text-white border border-gray-600 focus:ring-2 focus:ring-purple-400"
+              />
+            </div>
+
+            {/* Submit Button */}
+            <div className="mt-4">
+              <button
+                type="submit"
+                className="w-full bg-purple-500 hover:bg-purple-600 text-white py-2 rounded-md font-semibold transition duration-300"
+              >
+                Add Assignment
+              </button>
             </div>
           </form>
-
-          <div className="pt-2"></div>
         </div>
       </div>
 

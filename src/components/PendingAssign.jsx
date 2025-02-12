@@ -30,9 +30,9 @@ const PendingAssign = () => {
   }, [user.email]);
 
   return (
-    <div className="text-white px-4 md:px-6 bg-gray-900 min-h-screen">
+    <div className="text-white  bg-gray-900 min-h-screen">
       <NavBar />
-      <div className="min-h-[60vh] py-4">
+      <div className="min-h-[60vh] py-4 px-4 md:px-6">
         <h2 className="text-xl font-semibold mb-4">
           Pending Assignments: {assignment.length}
         </h2>
@@ -42,7 +42,7 @@ const PendingAssign = () => {
             <Loader2 className="animate-spin text-purple-400" size={50} />
           </div>
         ) : (
-          <div className="overflow-x-auto min-h-screen bg-gray-800 p-4 rounded-lg shadow-md">
+          <div className="overflow-x-auto min-h-screen bg-gray-800  rounded-lg shadow-md">
             <table className="table w-full">
 
               <thead>

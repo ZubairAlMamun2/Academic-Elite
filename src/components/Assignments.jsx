@@ -83,36 +83,37 @@ const Assignments = () => {
   }, [difficulty, search]);
 
   return (
-    <div className=" text-white px-4 md:px-6 bg-gray-900 min-h-screen">
+    <div className=" text-white  bg-gray-900 min-h-screen">
       <NavBar />
       <div className="md:flex justify-center gap-5 my-5">
-        <input
-          type="text"
-          placeholder="Search assignments..."
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-          className="px-4 py-2 rounded-md text-black"
-        />
-        <select
-          className="h-12 px-4 py-2 border-gray-400 border-2 rounded-md text-black"
-          onChange={(e) => setDifficulty(e.target.value)}
-          required
-          value={difficulty}
-        >
-          <option disabled value="">
-            Select Difficulty
-          </option>
-          <option value="easy">Easy</option>
-          <option value="medium">Medium</option>
-          <option value="hard">Hard</option>
-        </select>
-      </div>
+  <input
+    type="text"
+    placeholder="Search assignments..."
+    value={search}
+    onChange={(e) => setSearch(e.target.value)}
+    className="px-4 py-2 rounded-md text-black dark:text-white bg-white dark:bg-gray-700 border-gray-400 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-purple-500"
+  />
+  <select
+    className="h-12 px-4 py-2 border-gray-400 dark:border-gray-600 bg-white dark:bg-gray-700 rounded-md text-black dark:text-white focus:outline-none focus:ring-2 focus:ring-purple-500"
+    onChange={(e) => setDifficulty(e.target.value)}
+    required
+    value={difficulty}
+  >
+    <option disabled value="">
+      Select Difficulty
+    </option>
+    <option value="easy">Easy</option>
+    <option value="medium">Medium</option>
+    <option value="hard">Hard</option>
+  </select>
+</div>
+
       {loading ? (
         <div className="flex justify-center min-h-screen items-center h-40">
           <Loader2 className="animate-spin text-purple-400" size={50} />
         </div>
       ) : (
-        <div className="grid gap-3 grid-cols-6 min-h-[60vh]">
+        <div className="grid gap-3 px-4 md:px-6 grid-cols-6 min-h-[60vh]">
           {data.map((items) => (
             <div
               key={items._id}
