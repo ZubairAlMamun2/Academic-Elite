@@ -56,7 +56,7 @@ const CreateAssignment = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-900 text-white ">
+    <div className="min-h-screen  text-white ">
       <NavBar />
 
       <div className="flex justify-center items-center min-h-screen">

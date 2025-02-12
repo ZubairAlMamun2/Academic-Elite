@@ -30,7 +30,7 @@ const PendingAssign = () => {
   }, [user.email]);
 
   return (
-    <div className="text-white  bg-gray-900 min-h-screen">
+    <div className="text-white  min-h-screen">
       <NavBar />
       <div className="min-h-[60vh] py-4 px-4 md:px-6">
         <h2 className="text-xl font-semibold mb-4">
@@ -74,7 +74,7 @@ const PendingAssign = () => {
                             navigate(`/givemark/${item._id}`);
                           }
                         }}
-                        className="btn btn-xs bg-blue-500 hover:bg-blue-600 text-white"
+                        className="bg-purple-500 hover:bg-purple-600 px-3 py-1 rounded-md"
                       >
                         Give Marks
                       </button>

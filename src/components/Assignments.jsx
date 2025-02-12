@@ -83,7 +83,7 @@ const Assignments = () => {
   }, [difficulty, search]);
 
   return (
-    <div className=" text-white  bg-gray-900 min-h-screen">
+    <div className=" text-white   min-h-screen">
       <NavBar />
       <div className="md:flex justify-center gap-5 my-5">
   <input
@@ -113,7 +113,7 @@ const Assignments = () => {
           <Loader2 className="animate-spin text-purple-400" size={50} />
         </div>
       ) : (
-        <div className="grid gap-3 px-4 md:px-6 grid-cols-6 min-h-[60vh]">
+        <div className="grid gap-3 px-4 my-4 md:px-6 grid-cols-6 min-h-[60vh]">
           {data.map((items) => (
             <div
               key={items._id}
@@ -133,7 +133,7 @@ const Assignments = () => {
                 <p>Marks: {items.marks}</p>
                 <div className="card-actions justify-center">
                   <button
-                    className="bg-red-500 hover:bg-red-600 px-3 py-1 rounded-md"
+                    className="bg-purple-500 hover:bg-purple-600 px-3 py-1 rounded-md"
                     onClick={() => handledelete(items._id, items.email)}
                   >
                     Delete
@@ -151,13 +151,13 @@ const Assignments = () => {
                         });
                       }
                     }}
-                    className="bg-blue-500 hover:bg-blue-600 px-3 py-1 rounded-md"
+                    className="bg-purple-500 hover:bg-purple-600 px-3 py-1 rounded-md"
                   >
                     Update
                   </button>
                   <Link
                     to={`/details/${items._id}`}
-                    className="bg-green-500 hover:bg-green-600 px-3 py-1 rounded-md"
+                    className="bg-purple-500 hover:bg-purple-600 px-3 py-1 rounded-md"
                   >
                     View Assignment
                   </Link>

@@ -10,9 +10,13 @@ import Footer from '../components/Footer';
 
 const HomeLayouts = () => {
   return (
-    <div className="min-h-screen flex flex-col bg-gray-100 dark:bg-gray-900">
+    <div className="min-h-screen flex flex-col ">
       <NavBar />
-      <ThemeToggle />
+            
+      {/* Place ThemeToggle inside the layout where you want */}
+      <div className="flex justify-end p-4">
+        <ThemeToggle /> {/* Theme toggle button will appear here */}
+      </div>
       <Banner />
       <AssignmentTab />
       <PendingTab />
