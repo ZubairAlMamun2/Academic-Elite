@@ -83,8 +83,8 @@ const Login = () => {
   };
   return (
     <div className="min-h-screen flex justify-center items-center">
-      <div className="card rounded-none bg-gray-800  w-full max-w-sm shrink-0 p-10">
-        <h2 className="text-2xl font-semibold text-center">
+      <div className="card rounded-lg  bg-gray-800  w-full max-w-sm shrink-0 p-10">
+        <h2 className="text-2xl font-semibold text-center text-purple-400 mb-6">
           Login your account
         </h2>
         <form onSubmit={handlesubmit} className="card-body p-0">
@@ -130,7 +130,7 @@ const Login = () => {
             <button className="btn  text-white border-none bg-purple-500 hover:bg-purple-600 rounded-md">Login</button>
           </div>
         </form>
-        <p className="text-center text-sm">
+        <p className="text-center text-white text-sm">
           Dont’t Have An Account ?{" "}
           <Link className="text-red-500" to="/auth/register">
             Register

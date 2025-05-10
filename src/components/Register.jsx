@@ -80,8 +80,8 @@ const Register = () => {
 
   return (
     <div className="min-h-screen flex justify-center items-center">
-      <div className="card rounded-none bg-gray-800  w-full max-w-lg shrink-0 p-10">
-        <h2 className="text-2xl font-semibold text-center">
+      <div className="card rounded-lg my-4  bg-gray-800  w-full max-w-lg shrink-0 p-10">
+        <h2 className="text-2xl font-semibold text-center text-purple-400 mb-6">
           Register your account
         </h2>
         <form onSubmit={handleSubmit} className="card-body p-0">
@@ -141,7 +141,7 @@ const Register = () => {
             <button className="btn  text-white border-none bg-purple-500 hover:bg-purple-600 rounded-md">Register</button>
           </div>
         </form>
-        <p className="text-center text-sm">
+        <p className="text-center text-white text-sm">
           Already Have An Account ?{" "}
           <Link className="text-red-500" to="/auth/login">
             Login

@@ -91,10 +91,10 @@ const Assignments = () => {
     placeholder="Search assignments..."
     value={search}
     onChange={(e) => setSearch(e.target.value)}
-    className="px-4 py-2 rounded-md text-black dark:text-white bg-white dark:bg-gray-700 border-gray-400 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-purple-500"
+    className="px-4 mt-2 py-2 rounded-md text-black dark:text-white bg-white dark:bg-gray-700 border-gray-400 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-purple-500"
   />
   <select
-    className="h-12 px-4 py-2 border-gray-400 dark:border-gray-600 bg-white dark:bg-gray-700 rounded-md text-black dark:text-white focus:outline-none focus:ring-2 focus:ring-purple-500"
+    className="h-12 px-4 mt-2 py-2 border-gray-400 dark:border-gray-600 bg-white dark:bg-gray-700 rounded-md text-black dark:text-white focus:outline-none focus:ring-2 focus:ring-purple-500"
     onChange={(e) => setDifficulty(e.target.value)}
     required
     value={difficulty}
@@ -119,9 +119,9 @@ const Assignments = () => {
               key={items._id}
               className="card bg-gray-800 text-white col-span-6 md:col-span-3 lg:col-span-2 shadow-xl rounded-lg"
             >
-              <figure>
+              <figure className="rounded-lg">
                 <img
-                  className="p-3 h-48 border-none rounded-lg"
+                  className="p-3 h-auto w-full border-none rounded-lg"
                   src={items.photo}
                   alt="Assignment"
                 />
